@@ -104,20 +104,6 @@
     </div>
 
     <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="shake.js"></script>
-    <script>
-        // Plaxify all `js-plaxify` element layers
-        var layers = $('.js-plaxify')
-
-        $.each(layers, function(index, layer){
-            $(layer).plaxify({
-                xRange: $(layer).data('xrange') || 0,
-                yRange: $(layer).data('yrange') || 0,
-                invert: $(layer).data('invert') || false
-            })
-        })
-
-        $.plax.enable();
-    </script>
+    <script src="simulation_shake.js"></script>
 </body>
 </html>

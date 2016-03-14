@@ -39,10 +39,24 @@ function shake($plaxDom, index) {            // 每次鼠标移动，改变相�
     });
 }
 
-document.addEventListener('mousemove', function(e) {
-    distance_scale.x_distance_scale = (e.pageX - REFERENCE_POINT.x) / (WINDOW_WIDTH / 2);
-    distance_scale.y_distence_scale = (e.pageY - REFERENCE_POINT.y) / (WINDOW_HEIGHT / 2);
+function throttle(fn, delay) {
+    var allowSample = true;
+
+    return function(e) {
+        if (allowSample) {
+            allowSample = false;
+            setTimeout(function() {
+                allowSample = true;
+            }, delay);
+            fn(e);
+        }
+    };
+}
+
+document.addEventListener('mousemove', throttle(function(e) {
+    distance_scale.x_distance_scale = (e.pageX - REFERENCE_POINT.x) / (WINDOW_WIDTH / 1.2);
+    distance_scale.y_distence_scale = (e.pageY - REFERENCE_POINT.y) / (WINDOW_HEIGHT / 1.2);
     layers.each(function(index, layer) {
         shake($(layer), index);
     });
-});
+}), 100);
